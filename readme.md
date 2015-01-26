@@ -34,14 +34,17 @@ var jsonParser = require('../moment-json-parser');
 ```
 or override the default JSON.parse
 ```javascript
-require('../moment-json-parser').overrideDefault();
+require('moment-json-parser').overrideDefault();
 // JSON.parse gives you moments !!!
+// demo:
+var a = {a:moment()};
+var b = JSON.parse(JSON.stringify(a));
+console.log(b.a); //still moment 
 ```
 
 you can also revert back to default JSON.parse
 ```javascript
-require('../moment-json-parser').overrideDefault(false);
+require('moment-json-parser').overrideDefault(false);
 // JSON.parse gives you only strings :-(
 ```
 
-This
