@@ -15,6 +15,10 @@ describe('moment-json-parser', function(){
         moment.isMoment(parsed.entered).should.equal(true);
     });
 
+    it('shouldmatch only strings which match the reges for iso string', function(){
+        moment.isMoment(parsed.noDate).should.equal(false);
+    });
+
     it('should not modify classic JSON.parse before calling useMomentParser.overrideDefault', function(){
         var parsedClassic = JSON.parse(json);
         parsedClassic.entered.should.equal('2014-01-01T23:28:56.782Z');
@@ -25,7 +29,9 @@ describe('moment-json-parser', function(){
             momentJsonParser.overrideDefault();
         });
 
-        it('should now give us moments even when doint JSON.parse', function(){
+        it('should now give us moments even when doing JSON.parse or requiring json with node', function(){
+            var required = require('./JsonWithDate.json');
+            moment.isMoment(required.entered).should.equal(true);
             var parsed = JSON.parse(json);
             moment.isMoment(parsed.entered).should.equal(true);
         });

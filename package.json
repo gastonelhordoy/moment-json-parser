@@ -1,6 +1,6 @@
 {
   "name": "moment-json-parser",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Date parsing extensions for the JavaScript JSON parser to provide moment objects directly from JSON.parse()",
   "main": "moment-json-parser.js",
   "directories": {
@@ -15,6 +15,9 @@
   },
   "keywords": [
     "json",
+    "stringify",
+    "isodate",
+    "moment-plugin",
     "moment",
     "momentjs",
     "parsing",
