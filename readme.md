@@ -30,7 +30,6 @@ jspm install moment-json-parser
 Use as a function which you just require
 ```javascript
 var jsonParser = require('../moment-json-parser');
-
 ```
 or override the default JSON.parse
 ```javascript
@@ -39,7 +38,8 @@ require('moment-json-parser').overrideDefault();
 // demo:
 var a = {a:moment()};
 var b = JSON.parse(JSON.stringify(a));
-console.log(b.a); //still moment 
+var c = jsonParser(JSON.stringify(a));
+console.log(b.a, c.a); //still moment objects
 ```
 
 you can also revert back to default JSON.parse
