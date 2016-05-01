@@ -36,6 +36,6 @@
   },
   "homepage": "https://github.com/capaj/moment-json-parser",
   "dependencies": {
-    "moment": "^2.9.0"
+    "moment": "^2.13.0"
   }
 }
