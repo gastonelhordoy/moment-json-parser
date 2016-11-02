@@ -5,6 +5,17 @@ var reISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.{0,1}\d*))(?:Z|
 
 var parseSaved;
 
+function parseValue(value) {
+    var parsedValue = value;
+    if (typeof value === 'string') {
+        var a = reISO.exec(value);
+        if (a) {
+            parsedValue = moment(value);
+        }
+    }
+    return parsedValue;
+}
+
 /**
  * Wrapper around the JSON.parse() function that adds a date
  * filtering extension. Returns all dates as real JavaScript dates.
@@ -21,13 +32,7 @@ function parseWithMoment(json, next) {
     var parse = parseSaved ? parseSaved : JSON.parse;
 
     return parse(json, function(key, value) {
-        var parsedValue = value;
-        if (typeof value === 'string') {
-            var a = reISO.exec(value);
-            if (a) {
-                parsedValue = moment(value);
-            }
-        }
+        var parsedValue = parseValue(value);
         if (next !== undefined) {
             return next(key, parsedValue);
         } else {
@@ -40,7 +45,7 @@ function parseWithMoment(json, next) {
  * Globally enables JSON date parsing for JSON.parse(). Replaces the default JSON.parse() method and adds
  * @param {boolean} enable will reset default when called with false
  */
-parseWithMoment.overrideDefault = function(enable) {
+parseWithMoment.overrideDefault = function overrideDefault(enable) {
 
     // if any parameter is passed reset
     if (enable === false) {
@@ -57,3 +62,5 @@ parseWithMoment.overrideDefault = function(enable) {
 };
 
 module.exports = parseWithMoment;
+
+module.exports.parseValue = parseValue;
