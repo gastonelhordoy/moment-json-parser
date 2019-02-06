@@ -35,7 +35,7 @@
     "chai": "^1.10.0"
   },
   "homepage": "https://github.com/capaj/moment-json-parser",
-  "dependencies": {
-    "moment": "^2.13.0"
+  "peerDependencies": {
+    "moment": ">=2.19.3"
   }
 }
